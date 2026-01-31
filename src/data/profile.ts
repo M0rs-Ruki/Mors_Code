@@ -58,6 +58,7 @@ export const socialLinks = [
 export const navItems = [
   { label: "home", href: "#home", command: "cd ~/" },
   { label: "about", href: "#about", command: "cat about.md" },
+  { label: "experience", href: "#experience", command: "git log --career" },
   { label: "projects", href: "#projects", command: "ls ./projects" },
   { label: "skills", href: "#skills", command: "echo $SKILLS" },
   { label: "contact", href: "#contact", command: 'mail -s "Hello"' },
