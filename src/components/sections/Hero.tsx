@@ -139,12 +139,13 @@ export default function Hero() {
           ))}
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="flex flex-col items-center gap-2 text-muted">
-            <span className="text-xs">scroll</span>
-            <span className="text-accent">↓</span>
-          </div>
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20">
+        <div className="flex flex-col items-center gap-2 text-muted">
+          <span className="text-xs">scroll</span>
+          <span className="text-accent">↓</span>
         </div>
       </div>
     </section>

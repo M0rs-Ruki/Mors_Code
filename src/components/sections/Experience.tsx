@@ -1,92 +1,75 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { TerminalWindow } from "@/components/ui";
+import AsciiHeader from "@/components/ui/AsciiHeader";
 import { experiences } from "@/data";
+
+const EXPERIENCE_ASCII = `
+             ██████╗ ██████╗ ██████╗ ███████╗███████╗██████╗ 
+             ██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝██╔══██╗
+█████╗█████╗ ██║     ██████╔╝██████╔╝█████╗  █████╗  ██████╔╝
+╚════╝╚════╝ ██║     ██╔══██╗██╔══██╗██╔══╝  ██╔══╝  ██╔══██╗
+             ╚██████╗██║  ██║██║  ██║███████╗███████╗██║  ██║
+              ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝`;
 
 export default function Experience() {
   return (
-    <section id="experience" className="section-padding bg-background-dark">
-      <div className="container-main">
+    <section
+      id="experience"
+      className="section-padding bg-background-dark relative overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-grid opacity-[0.4]" />
+
+      <div className="container-main relative z-10">
         {/* Section Header */}
-        <header className="section-header">
-          <div className="section-label">
-            <span className="section-line" />
-            <span className="text-accent text-sm font-medium tracking-widest uppercase">
-              Experience
-            </span>
-            <span className="section-line" />
-          </div>
-          <h2 className="section-title">
-            <span className="text-muted">$ git log</span>{" "}
-            <span className="text-accent">--career</span>
-          </h2>
-        </header>
+        <AsciiHeader text={EXPERIENCE_ASCII} />
 
-        {/* Experience Timeline */}
-        <div className="experience-timeline">
-          {experiences.map((exp, index) => (
-            <article key={exp.id} className="experience-card">
-              {/* Timeline Connector */}
-              <div className="experience-timeline-line">
-                <div className="experience-dot" />
-                {index < experiences.length - 1 && (
-                  <div className="experience-connector" />
-                )}
-              </div>
-
-              {/* Content */}
-              <div className="experience-content">
-                {/* Header */}
-                <div className="experience-header">
-                  <div className="experience-header-main">
-                    <h3 className="experience-role">{exp.role}</h3>
-                    <div className="experience-company">
-                      <span className="text-accent font-semibold">
-                        {exp.company}
-                      </span>
-                      <span className="experience-type">{exp.type}</span>
-                    </div>
-                  </div>
-                  <div className="experience-meta">
-                    <div className="experience-date">
-                      <span className="text-accent">⏱</span>
-                      {exp.startDate} - {exp.endDate}
-                    </div>
-                    <div className="experience-location">
-                      <span className="text-accent">◉</span>
-                      {exp.location} · {exp.mode}
-                    </div>
-                  </div>
+        <div className="max-w-4xl mx-auto">
+          <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent">
+            {experiences.map((job, index) => (
+              <div
+                key={job.id}
+                className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
+              >
+                {/* Timeline Dot */}
+                <div className="flex items-center justify-center w-10 h-10 rounded-full border border-border bg-background shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 group-hover:border-accent transition-colors">
+                  <div className="w-3 h-3 bg-accent rounded-full" />
                 </div>
 
-                {/* Description */}
-                <p className="experience-description">{exp.description}</p>
-
-                {/* Highlights */}
-                <div className="experience-highlights">
-                  <div className="experience-highlights-header">
-                    <span className="text-accent">$</span> Key Achievements
-                  </div>
-                  <ul className="experience-highlights-list">
-                    {exp.highlights.map((highlight, i) => (
-                      <li key={i} className="experience-highlight-item">
-                        <span className="text-accent shrink-0">▸</span>
-                        <span>{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Skills */}
-                <div className="experience-skills">
-                  {exp.skills.map((skill) => (
-                    <span key={skill} className="skill-tag">
-                      {skill}
+                {/* Card */}
+                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 bg-background border border-border rounded-xl shadow-sm hover:border-accent/40 transition-all duration-300 group-hover:shadow-lg group-hover:shadow-accent/5">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <h3 className="text-lg font-bold text-foreground">
+                      {job.role}
+                    </h3>
+                    <span className="text-xs font-mono text-accent bg-accent/10 px-2 py-1 rounded border border-accent/20">
+                      {job.startDate} - {job.endDate}
                     </span>
-                  ))}
+                  </div>
+
+                  <div className="text-sm text-foreground font-medium mb-3 flex items-center gap-2">
+                    <span className="text-accent">@</span> {job.company}
+                  </div>
+
+                  <p className="text-muted text-sm leading-relaxed mb-4">
+                    {job.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {job.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="text-[10px] px-2 py-1 bg-background-dark border border-border rounded text-muted font-mono"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </article>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -1,113 +1,111 @@
 "use client";
 
 import { TerminalWindow } from "@/components/ui";
+import AsciiHeader from "@/components/ui/AsciiHeader";
 import { projects } from "@/data";
 
-const statusLabels = {
-  deployed: "● Live",
-  development: "● In Dev",
-  backend: "● Backend",
-} as const;
+const PROJECTS_ASCII = `
+   ██╗    ██████╗ ██████╗  ██████╗      ██╗███████╗ ██████╗████████╗███████╗
+  ██╔╝    ██╔══██╗██╔══██╗██╔═══██╗     ██║██╔════╝██╔════╝╚══██╔══╝██╔════╝
+ ██╔╝     ██████╔╝██████╔╝██║   ██║     ██║█████╗  ██║        ██║   ███████╗
+██╔╝      ██╔═══╝ ██╔══██╗██║   ██║██   ██║██╔══╝  ██║        ██║   ╚════██║
+╚██╗      ██║     ██║  ██║╚██████╔╝╚█████╔╝███████╗╚██████╗   ██║   ███████║
+ ╚═╝      ╚═╝     ╚═╝  ╚═╝ ╚═════╝  ╚════╝ ╚══════╝ ╚═════╝   ╚═╝   ╚══════╝`;
 
 export default function Projects() {
   return (
-    <section id="projects" className="section-padding bg-background-dark">
-      <div className="container-main">
+    <section
+      id="projects"
+      className="section-padding bg-background relative overflow-hidden"
+    >
+      <div className="container-main relative z-10">
         {/* Section Header */}
-        <header className="section-header">
-          <div className="section-label">
-            <span className="section-line" />
-            <span className="text-accent text-sm font-medium tracking-widest uppercase">
-              Projects
-            </span>
-            <span className="section-line" />
-          </div>
-          <h2 className="section-title">
-            <span className="text-muted">$ ls</span>{" "}
-            <span className="text-accent">./projects</span>
-          </h2>
-          <p className="mt-4 text-muted">
-            <span className="text-green-400">✓</span> {projects.length} projects
-            found
-          </p>
-        </header>
+        <AsciiHeader text={PROJECTS_ASCII} />
 
-        {/* Projects Grid */}
-        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project) => (
             <TerminalWindow
               key={project.id}
               title={`~/projects/${project.title.toLowerCase().replace(/\s+/g, "-")}`}
-              className="group hover:shadow-lg hover:shadow-accent/10 transition-shadow duration-300"
+              className="group hover:shadow-lg hover:shadow-accent/10 transition-shadow duration-300 h-full flex flex-col"
             >
-              <div className="space-y-3 sm:space-y-4">
-                {/* Header */}
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-foreground group-hover:text-accent transition-colors">
-                      {project.title}
-                    </h3>
-                    <span
-                      className={`status-badge status-badge--${project.status} mt-2`}
-                    >
-                      {statusLabels[project.status]}
-                    </span>
+              <div className="flex flex-col h-full bg-background-dark/50">
+                {/* Project Image/Preview Area */}
+                <div className="relative h-48 bg-background border-b border-border p-4 flex items-center justify-center overflow-hidden group-hover:bg-background-light/50 transition-colors">
+                  <div className="text-4xl select-none opacity-20 group-hover:opacity-40 transition-opacity grayscale group-hover:grayscale-0">
+                    {/* Using emoji as placeholder if no image, or just stylistic choice */}
+                    {project.title.includes("Chati")
+                      ? "🤖"
+                      : project.title.includes("CMS")
+                        ? "📝"
+                        : "💻"}
+                  </div>
+                  <div className="absolute top-2 right-2 px-2 py-1 text-[10px] uppercase tracking-wider font-mono border border-accent/20 text-accent rounded bg-accent/5">
+                    {project.status === "deployed" ? "Live" : "Dev"}
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className="text-muted text-xs sm:text-sm leading-relaxed">
-                  {project.description}
-                </p>
+                <div className="p-6 flex flex-col flex-1">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-accent transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-muted leading-relaxed line-clamp-3">
+                      {project.description}
+                    </p>
+                  </div>
 
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {project.tech.map((tech) => (
-                    <span key={tech} className="skill-tag text-xs">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                  <div className="mt-auto space-y-4">
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                      {project.tech.map((tech) => (
+                        <span key={tech} className="skill-tag text-xs">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
 
-                {/* Links */}
-                <div className="flex items-center gap-4 pt-3 sm:pt-4 border-t border-border">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-xs sm:text-sm link"
-                  >
-                    <span>⌘</span>
-                    <span>Source</span>
-                  </a>
-                  {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-xs sm:text-sm link"
-                    >
-                      <span>↗</span>
-                      <span>Live Demo</span>
-                    </a>
-                  )}
+                    {/* Links */}
+                    <div className="flex items-center gap-4 pt-4 border-t border-border">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-xs sm:text-sm text-muted hover:text-accent transition-colors"
+                        >
+                          <span className="text-accent">⌘</span>
+                          <span>Source</span>
+                        </a>
+                      )}
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 text-xs sm:text-sm text-muted hover:text-accent transition-colors"
+                        >
+                          <span className="text-accent">↗</span>
+                          <span>Live Demo</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
             </TerminalWindow>
           ))}
         </div>
 
-        {/* GitHub CTA */}
         <div className="mt-12 text-center">
           <a
-            href="https://github.com/M0rs-Ruki"
+            href="https://github.com/mors_ruki?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-primary"
+            className="btn btn-outline"
           >
-            <span>⌘</span>
-            <span>$ cd github --view-all</span>
-            <span>→</span>
+            <span>view all repositories</span>
+            <span className="text-accent">→</span>
           </a>
         </div>
       </div>
