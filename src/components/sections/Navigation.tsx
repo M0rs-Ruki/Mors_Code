@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { navItems } from "@/data";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Navigation() {
   const [activeItem, setActiveItem] = useState("home");
@@ -22,54 +23,59 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                onClick={() => setActiveItem(item.label)}
-                className={`relative px-4 py-2 text-sm font-bold transition-colors border-2 border-transparent hover:border-foreground
-                  ${
-                    activeItem === item.label
-                      ? "text-background bg-foreground"
-                      : "text-foreground hover:bg-foreground hover:text-background"
-                  }`}
-              >
-                <span className="flex items-center gap-2">
-                  <span className="opacity-100">
-                    $
+          <div className="hidden md:flex items-center gap-4">
+            <div className="flex items-center gap-1">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setActiveItem(item.label)}
+                  className={`relative px-4 py-2 text-sm font-bold transition-colors border-2 border-transparent hover:border-foreground
+                    ${
+                      activeItem === item.label
+                        ? "text-background bg-foreground"
+                        : "text-foreground hover:bg-foreground hover:text-background"
+                    }`}
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="opacity-100">$</span>
+                    {item.label}
                   </span>
-                  {item.label}
-                </span>
-              </Link>
-            ))}
+                </Link>
+              ))}
+            </div>
+            {/* Theme Toggle */}
+            <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground border-2 border-transparent hover:border-foreground transition-all"
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
-          >
-            <div className="flex flex-col gap-1.5">
-              <span
-                className={`w-6 h-0.5 bg-current transition-transform ${
-                  isOpen ? "rotate-45 translate-y-2" : ""
-                }`}
-              />
-              <span
-                className={`w-6 h-0.5 bg-current transition-opacity ${
-                  isOpen ? "opacity-0" : ""
-                }`}
-              />
-              <span
-                className={`w-6 h-0.5 bg-current transition-transform ${
-                  isOpen ? "-rotate-45 -translate-y-2" : ""
-                }`}
-              />
-            </div>
-          </button>
+          {/* Mobile Menu Button - Align right */}
+          <div className="flex items-center gap-4 md:hidden">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-foreground border-2 border-transparent hover:border-foreground transition-all"
+              aria-label="Toggle menu"
+              aria-expanded={isOpen}
+            >
+              <div className="flex flex-col gap-1.5">
+                <span
+                  className={`w-6 h-0.5 bg-current transition-transform ${
+                    isOpen ? "rotate-45 translate-y-2" : ""
+                  }`}
+                />
+                <span
+                  className={`w-6 h-0.5 bg-current transition-opacity ${
+                    isOpen ? "opacity-0" : ""
+                  }`}
+                />
+                <span
+                  className={`w-6 h-0.5 bg-current transition-transform ${
+                    isOpen ? "-rotate-45 -translate-y-2" : ""
+                  }`}
+                />
+              </div>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

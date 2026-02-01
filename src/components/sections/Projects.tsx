@@ -27,7 +27,7 @@ export default function Projects() {
             <TerminalWindow
               key={project.id}
               title={`~/projects/${project.title.toLowerCase().replace(/\s+/g, "-")}`}
-              className="group h-full flex flex-col border-2 border-transparent hover:border-foreground transition-all duration-300"
+              className="group h-full flex flex-col border-2 border-foreground hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] transition-all duration-300"
             >
               <div className="flex flex-col h-full bg-background">
                 {/* Project Image/Preview Area */}

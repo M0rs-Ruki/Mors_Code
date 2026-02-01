@@ -50,7 +50,7 @@ export default function Hero() {
 
         {/* Terminal Info Box */}
         <div
-          className="inline-block bg-background border-2 border-foreground px-6 py-4 mb-8 text-left min-w-[300px]"
+          className="inline-block bg-background border-2 border-foreground px-4 py-4 mb-8 text-left w-full max-w-[340px] sm:min-w-[320px]"
         >
           <div className="flex items-center gap-3">
             <span className="text-foreground font-bold">❯</span>
