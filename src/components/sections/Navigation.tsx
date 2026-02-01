@@ -9,16 +9,16 @@ export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background-dark/95 backdrop-blur-md border-b border-border">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background border-b-2 border-foreground h-16 transition-colors">
       <div className="container-main">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="#home" className="flex items-center gap-2 group">
-            <span className="text-accent text-xl font-bold">❯</span>
-            <span className="text-lg font-bold tracking-wider group-hover:text-accent transition-colors">
+            <span className="text-foreground text-xl font-bold">❯</span>
+            <span className="text-lg font-bold tracking-wider group-hover:underline transition-all">
               MORS
             </span>
-            <span className="w-2 h-4 bg-accent animate-blink" />
+            <span className="w-2 h-4 bg-foreground animate-blink" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -28,22 +28,19 @@ export default function Navigation() {
                 key={item.label}
                 href={item.href}
                 onClick={() => setActiveItem(item.label)}
-                className={`relative px-4 py-2 text-sm font-medium transition-colors group
+                className={`relative px-4 py-2 text-sm font-bold transition-colors border-2 border-transparent hover:border-foreground
                   ${
                     activeItem === item.label
-                      ? "text-accent"
-                      : "text-muted hover:text-accent"
+                      ? "text-background bg-foreground"
+                      : "text-foreground hover:bg-foreground hover:text-background"
                   }`}
               >
                 <span className="flex items-center gap-2">
-                  <span className="text-accent opacity-50 group-hover:opacity-100">
+                  <span className="opacity-100">
                     $
                   </span>
                   {item.label}
                 </span>
-                {activeItem === item.label && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent" />
-                )}
               </Link>
             ))}
           </div>
@@ -51,7 +48,7 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-muted hover:text-accent transition-colors"
+            className="md:hidden p-2 text-foreground border-2 border-transparent hover:border-foreground transition-all"
             aria-label="Toggle menu"
             aria-expanded={isOpen}
           >
@@ -77,7 +74,7 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border">
+          <div className="md:hidden py-4 border-t-2 border-foreground">
             {navItems.map((item) => (
               <Link
                 key={item.label}
@@ -86,14 +83,14 @@ export default function Navigation() {
                   setActiveItem(item.label);
                   setIsOpen(false);
                 }}
-                className={`block px-4 py-3 text-sm font-medium transition-colors
+                className={`block px-4 py-3 text-sm font-bold transition-colors border-l-2
                   ${
                     activeItem === item.label
-                      ? "text-accent bg-accent/10"
-                      : "text-muted hover:text-accent hover:bg-accent/5"
+                      ? "text-background bg-foreground border-background"
+                      : "text-foreground hover:bg-foreground hover:text-background border-transparent hover:border-foreground"
                   }`}
               >
-                <span className="text-accent mr-2">$</span>
+                <span className="mr-2">$</span>
                 {item.command}
               </Link>
             ))}

@@ -22,7 +22,7 @@ export default function AsciiHeader({
         transition={{ duration: 0.5, delay: delay }}
         className="flex justify-center"
       >
-        <pre className="ascii-art text-glow text-[0.35rem] sm:text-[0.45rem] md:text-xs lg:text-sm leading-none whitespace-pre text-accent select-none">
+        <pre className="ascii-art text-[0.35rem] sm:text-[0.45rem] md:text-xs lg:text-sm leading-none whitespace-pre text-foreground select-none">
           {text}
         </pre>
       </motion.div>

@@ -37,22 +37,22 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section-padding bg-background relative overflow-hidden">
+    <section id="contact" className="p-8 bg-background relative overflow-hidden border-t-2 border-foreground">
       <div className="container-main relative z-10">
         {/* Section Header */}
         <AsciiHeader text={CONTACT_ASCII} />
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 mt-8">
           {/* Contact Form */}
           <div className="order-2 lg:order-1">
             <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
-               <span className="text-accent">~/</span> Send Message
+               <span className="text-foreground font-bold">~/</span> Send Message
             </h3>
-            <div className="bg-background-dark border border-border rounded-xl p-6 hover:border-accent/30 transition-colors">
+            <div className="bg-background border-2 border-foreground rounded-none p-6 hover:border-foreground transition-colors">
                <form onSubmit={handleSubmit} className="space-y-5">
                  <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                       <label className="text-sm text-muted font-medium">Name</label>
+                       <label className="text-sm text-foreground font-bold">Name</label>
                        <input
                          type="text"
                          value={formData.name}
@@ -61,11 +61,11 @@ export default function Contact() {
                          }
                          required
                          placeholder="John Doe"
-                         className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-accent/50 text-foreground transition-all"
+                         className="w-full px-4 py-2 bg-background border-2 border-foreground rounded-none focus:outline-none focus:bg-foreground focus:text-background text-foreground font-medium transition-all placeholder:text-foreground/50"
                        />
                     </div>
                     <div className="space-y-2">
-                       <label className="text-sm text-muted font-medium">Email</label>
+                       <label className="text-sm text-foreground font-bold">Email</label>
                        <input
                          type="email"
                          value={formData.email}
@@ -74,13 +74,13 @@ export default function Contact() {
                          }
                          required
                          placeholder="john@example.com"
-                         className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-accent/50 text-foreground transition-all"
+                         className="w-full px-4 py-2 bg-background border-2 border-foreground rounded-none focus:outline-none focus:bg-foreground focus:text-background text-foreground font-medium transition-all placeholder:text-foreground/50"
                        />
                     </div>
                  </div>
 
                  <div className="space-y-2">
-                   <label className="text-sm text-muted font-medium">Message</label>
+                   <label className="text-sm text-foreground font-bold">Message</label>
                    <textarea
                      value={formData.message}
                      onChange={(e) =>
@@ -89,14 +89,14 @@ export default function Contact() {
                      required
                      rows={5}
                      placeholder="Hello, I'd like to talk about..."
-                     className="w-full px-4 py-2 bg-background border border-border rounded-lg focus:outline-none focus:border-accent/50 text-foreground transition-all resize-none"
+                     className="w-full px-4 py-2 bg-background border-2 border-foreground rounded-none focus:outline-none focus:bg-foreground focus:text-background text-foreground font-medium transition-all resize-none placeholder:text-foreground/50"
                    />
                  </div>
 
                  <button
                    type="submit"
                    disabled={isSubmitting}
-                   className="w-full py-3 bg-accent text-background font-bold rounded-lg hover:bg-accent-light transition-colors disabled:opacity-70 flex items-center justify-center gap-2"
+                   className="w-full py-3 bg-foreground text-background font-bold rounded-none hover:bg-background hover:text-foreground border-2 border-transparent hover:border-foreground transition-all disabled:opacity-70 flex items-center justify-center gap-2"
                  >
                    {isSubmitting ? (
                      <>
@@ -112,7 +112,7 @@ export default function Contact() {
                  </button>
 
                  {submitted && (
-                   <div className="p-3 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400 text-sm flex items-center justify-center gap-2">
+                   <div className="p-3 bg-background border-2 border-foreground rounded-none text-foreground text-sm flex items-center justify-center gap-2 font-bold">
                      <span>✓</span>
                      <span>Message sent successfully!</span>
                    </div>
@@ -125,9 +125,9 @@ export default function Contact() {
           <div className="space-y-8 order-1 lg:order-2">
             <div>
                <h3 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
-                  <span className="text-accent">~/</span> Connect
+                  <span className="text-foreground font-bold">~/</span> Connect
                </h3>
-               <div className="prose prose-invert max-w-none text-muted mb-8">
+               <div className="prose prose-invert max-w-none text-foreground font-medium mb-8">
                   <p>
                      Currently looking for new opportunities. Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
                   </p>
@@ -135,24 +135,24 @@ export default function Contact() {
 
                <div className="space-y-4">
                   {/* Email */}
-                  <a href={`mailto:${profile.email}`} className="flex items-center gap-4 p-4 rounded-xl bg-background-dark border border-border hover:border-accent/40 transition-all group">
-                     <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-background transition-colors">
+                  <a href={`mailto:${profile.email}`} className="flex items-center gap-4 p-4 rounded-none bg-background border-2 border-foreground hover:bg-foreground hover:text-background transition-all group">
+                     <div className="w-10 h-10 rounded-full bg-foreground flex items-center justify-center text-background group-hover:bg-background group-hover:text-foreground border-2 border-transparent group-hover:border-background transition-colors">
                         @
                      </div>
                      <div>
-                        <div className="text-xs text-muted uppercase tracking-wider">Email</div>
-                        <div className="text-foreground font-medium">{profile.email}</div>
+                        <div className="text-xs text-foreground group-hover:text-background uppercase tracking-wider font-bold">Email</div>
+                        <div className="text-foreground group-hover:text-background font-bold">{profile.email}</div>
                      </div>
                   </a>
 
                   {/* Location */}
-                  <div className="flex items-center gap-4 p-4 rounded-xl bg-background-dark border border-border hover:border-accent/40 transition-all group">
-                     <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-background transition-colors">
+                  <div className="flex items-center gap-4 p-4 rounded-none bg-background border-2 border-foreground hover:bg-foreground hover:text-background transition-all group">
+                     <div className="w-10 h-10 rounded-full bg-foreground flex items-center justify-center text-background group-hover:bg-background group-hover:text-foreground border-2 border-transparent group-hover:border-background transition-colors">
                         📍
                      </div>
                      <div>
-                        <div className="text-xs text-muted uppercase tracking-wider">Location</div>
-                        <div className="text-foreground font-medium">{profile.location}</div>
+                        <div className="text-xs text-foreground group-hover:text-background uppercase tracking-wider font-bold">Location</div>
+                        <div className="text-foreground group-hover:text-background font-bold">{profile.location}</div>
                      </div>
                   </div>
                </div>
@@ -166,9 +166,9 @@ export default function Contact() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-background-dark border border-border hover:border-accent/50 hover:text-accent transition-all text-sm text-muted"
+                    className="flex items-center gap-2 px-4 py-2 rounded-none bg-background border-2 border-foreground hover:bg-foreground hover:text-background transition-all text-sm text-foreground font-bold group"
                   >
-                     <span>{link.icon}</span>
+                     <span className="group-hover:scale-110 transition-transform">{link.icon}</span>
                      <span>{link.name}</span>
                   </a>
                ))}

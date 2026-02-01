@@ -64,7 +64,7 @@ export default function Typewriter({
       {displayText}
       {showCursor && (
         <span
-          className={`inline-block w-2 h-5 bg-accent ml-1 align-middle ${
+          className={`inline-block w-2 h-5 bg-foreground ml-1 align-middle ${
             !isComplete ? "animate-blink" : "opacity-0"
           }`}
         >

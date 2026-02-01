@@ -19,85 +19,74 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 bg-background text-foreground"
     >
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background-dark to-background" />
-      <div className="absolute inset-0 bg-grid" />
-
-      {/* Decorative Elements */}
-      <div className="decorative-box w-20 h-20 top-20 left-10 rotate-45 animate-float" />
-      <div
-        className="decorative-box w-16 h-16 bottom-40 right-20 rotate-12 animate-float"
-        style={{ animationDelay: "1s" }}
-      />
+      {/* Background Grid */}
+      <div className="absolute inset-0 bg-grid opacity-100" />
 
       <div className="relative z-10 container-main text-center">
         {/* Welcome Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 border border-accent/50 rounded-lg mb-8 animate-fadeInUp">
-          <span className="text-accent">✦</span>
-          <span className="text-muted">Welcome to</span>
-          <span className="text-accent font-semibold">Mors Code</span>
+        <div className="inline-flex items-center gap-2 px-4 py-2 border-2 border-foreground mb-8">
+          <span className="text-foreground">✦</span>
+          <span className="text-foreground font-bold">Welcome to</span>
+          <span className="text-foreground font-bold">Mors Code</span>
         </div>
 
         {/* ASCII Name */}
         <div
-          className="mb-6 animate-fadeInUp"
-          style={{ animationDelay: "0.1s" }}
+          className="mb-6"
         >
-          <pre className="ascii-art text-glow text-[0.35rem] sm:text-[0.5rem] md:text-xs lg:text-sm inline-block">
+          <pre className="ascii-art text-[0.35rem] sm:text-[0.5rem] md:text-xs lg:text-sm inline-block text-foreground leading-none">
             {BLOCK_NAME}
           </pre>
         </div>
 
         {/* Real Name */}
         <h2
-          className="text-xl md:text-2xl text-muted font-light tracking-widest mb-8 animate-fadeInUp"
-          style={{ animationDelay: "0.2s" }}
+          className="text-xl md:text-2xl text-foreground font-bold tracking-widest mb-8"
         >
           {profile.name.toUpperCase()}
         </h2>
 
         {/* Terminal Info Box */}
         <div
-          className="inline-block bg-background-dark border border-border rounded-lg px-6 py-4 mb-8 animate-fadeInUp"
-          style={{ animationDelay: "0.3s" }}
+          className="inline-block bg-background border-2 border-foreground px-6 py-4 mb-8 text-left min-w-[300px]"
         >
-          <div className="flex items-center gap-3 text-left">
-            <span className="text-accent">❯</span>
-            <span className="text-muted">role:</span>
+          <div className="flex items-center gap-3">
+            <span className="text-foreground font-bold">❯</span>
+            <span className="text-foreground font-bold">role:</span>
             <Typewriter
               text={profile.role}
               speed={50}
               delay={800}
-              className="text-accent font-semibold"
+              className="text-foreground font-bold"
               onComplete={() => setShowStatus(true)}
             />
           </div>
 
           {showStatus && (
-            <div className="flex items-center gap-3 text-left mt-2 animate-fadeInUp">
-              <span className="text-accent">❯</span>
-              <span className="text-muted">status:</span>
+            <div className="flex items-center gap-3 mt-2">
+              <span className="text-foreground font-bold">❯</span>
+              <span className="text-foreground font-bold">status:</span>
               <Typewriter
                 text={profile.status}
                 speed={40}
                 delay={100}
-                className="text-green-400 font-medium"
+                className="text-foreground font-bold"
                 onComplete={() => setShowLocation(true)}
               />
             </div>
           )}
 
           {showLocation && (
-            <div className="flex items-center gap-3 text-left mt-2 animate-fadeInUp">
-              <span className="text-accent">❯</span>
-              <span className="text-muted">location:</span>
+            <div className="flex items-center gap-3 mt-2">
+              <span className="text-foreground font-bold">❯</span>
+              <span className="text-foreground font-bold">location:</span>
               <Typewriter
-                text={`${profile.location} 🇮🇳`}
+                text={`${profile.location}`}
                 speed={30}
                 delay={100}
-                className="text-foreground"
+                className="text-foreground font-bold"
               />
             </div>
           )}
@@ -105,22 +94,20 @@ export default function Hero() {
 
         {/* CTA Buttons */}
         <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-fadeInUp"
-          style={{ animationDelay: "0.4s" }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
         >
-          <a href="#projects" className="btn btn-primary">
+          <a href="#projects" className="px-6 py-3 bg-foreground text-background border-2 border-foreground font-bold hover:bg-background hover:text-foreground transition-colors flex items-center gap-2">
             <span>$ ls ./projects</span>
             <span>→</span>
           </a>
-          <a href="#contact" className="btn btn-outline">
+          <a href="#contact" className="px-6 py-3 bg-background text-foreground border-2 border-foreground font-bold hover:bg-foreground hover:text-background transition-colors">
             <span>$ contact --hire</span>
           </a>
         </div>
 
         {/* Social Links */}
         <div
-          className="flex items-center justify-center gap-6 animate-fadeInUp"
-          style={{ animationDelay: "0.5s" }}
+          className="flex items-center justify-center gap-6"
         >
           {socialLinks.slice(0, 4).map((social) => (
             <a
@@ -128,13 +115,13 @@ export default function Hero() {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 link"
+              className="group flex items-center gap-2 text-foreground hover:underline"
               aria-label={social.name}
             >
-              <span className="text-lg group-hover:scale-110 transition-transform">
+              <span className="text-lg">
                 {social.icon}
               </span>
-              <span className="text-sm hidden sm:inline">{social.name}</span>
+              <span className="text-sm hidden sm:inline font-bold">{social.name}</span>
             </a>
           ))}
         </div>
@@ -143,9 +130,9 @@ export default function Hero() {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20">
-        <div className="flex flex-col items-center gap-2 text-muted">
-          <span className="text-xs">scroll</span>
-          <span className="text-accent">↓</span>
+        <div className="flex flex-col items-center gap-2 text-foreground">
+          <span className="text-xs font-bold">scroll</span>
+          <span className="text-foreground font-bold">↓</span>
         </div>
       </div>
     </section>

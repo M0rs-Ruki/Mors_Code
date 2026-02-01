@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import { ThemeProvider } from "./theme-provider";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({
@@ -46,11 +47,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${jetbrainsMono.variable} font-mono antialiased bg-[#1a1a1a] text-[#ededed]`}
+        className={`${jetbrainsMono.variable} font-mono antialiased bg-background text-foreground`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
