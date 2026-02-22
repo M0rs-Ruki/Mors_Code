@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* Single source of truth: all colors defined here and referenced by Tailwind */
+:root {
+  --paper: #FDFBF7;
+  --ink: #121212;
+  --charcoal: #1A1A1A;
+  --smoke: #E5E5E5;
+  --accent: #2D5A3D;
+}
+
+html.dark,
+.dark {
+  --paper: #121212;
+  --ink: #121212;
+  --charcoal: #E5E5E5;
+  --smoke: #E5E5E5;
+  --accent: #4a9960;
+}
+
+@theme {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-charcoal: var(--charcoal);
+  --color-smoke: var(--smoke);
+  --color-accent: var(--accent);
+  --font-serif: var(--font-playfair), serif;
+  --font-mono: var(--font-jetbrains), monospace;
+}
+
+/* Grain overlay – vintage tactile feel */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--paper);
+  color: #1A1A1A;
+  font-family: var(--font-serif);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+html.dark body {
+  color: var(--charcoal);
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* Force readable text in light mode – overrides any Tailwind so text is always visible */
+html:not(.dark) body {
+  color: #1A1A1A;
+}
+html:not(.dark) main,
+html:not(.dark) main * {
+  color: #1A1A1A;
+}
+/* Keep links and buttons with accent in light mode */
+html:not(.dark) main a[href] {
+  color: #2D5A3D;
+}
+html:not(.dark) main a[href]:hover {
+  text-decoration: underline;
+}
+/* Theme toggle (outside main) – keep icon visible in light mode */
+html:not(.dark) button[aria-label="Toggle light or dark theme"] {
+  color: #1A1A1A;
+  border-color: rgba(26, 26, 26, 0.4);
+}
+
+/* Light mode: force visible borders (Skills tags, Project cards, section dividers) */
+html:not(.dark) main header {
+  border-bottom-color: rgba(26, 26, 26, 0.4);
+}
+html:not(.dark) main section {
+  border-bottom-color: rgba(26, 26, 26, 0.4);
+}
+html:not(.dark) main section ul li {
+  border-color: rgba(26, 26, 26, 0.4);
+}
+html:not(.dark) main article {
+  border-color: rgba(26, 26, 26, 0.4);
+}
