@@ -2,7 +2,7 @@
 
 /* Single source of truth: all colors defined here and referenced by Tailwind */
 :root {
-  --paper: #FDFBF7;
+  --paper: #fffaf2;
   --ink: #121212;
   --charcoal: #1A1A1A;
   --smoke: #E5E5E5;

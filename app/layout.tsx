@@ -17,12 +17,12 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
-const title = "Anup Pradhan | Full-Stack Developer | Backend & AI/ML";
+const title = "Anup Pradhan | Software Developer | Backend & AI/ML";
 const description =
-  "Full-Stack Developer and Backend Specialist with a focus on AI/ML. MERN stack, Node.js, React, Next.js, Python, TensorFlow. Based in Bhubaneswar, India. Available for hire.";
+  "Software Developer and Backend Specialist with a focus on AI/ML. Node.js, React, Next.js, Python, TensorFlow. Based in Bhubaneswar, India. Available for hire.";
 const keywords = [
   "Anup Pradhan",
-  "Full-Stack Developer",
+  "Software Developer",
   "Backend Developer",
   "MERN stack",
   "Node.js",
@@ -31,7 +31,9 @@ const keywords = [
   "AI/ML",
   "Python",
   "Bhubaneswar",
+  "Odisha",
   "portfolio",
+  "developer portfolio",
 ];
 
 export const metadata: Metadata = {
@@ -44,18 +46,23 @@ export const metadata: Metadata = {
   keywords,
   authors: [{ name: "Anup Pradhan", url: siteUrl }],
   creator: "Anup Pradhan",
+  publisher: "Anup Pradhan",
+  applicationName: "Anup Pradhan - Portfolio",
+  referrer: "origin-when-cross-origin",
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: siteUrl,
-    siteName: "Anup Pradhan",
+    siteName: "Anup Pradhan - Software Developer",
     title,
     description,
+    countryName: "India",
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
+    creator: "@AnupPradhan0",
   },
   robots: {
     index: true,
@@ -64,6 +71,7 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: siteUrl },
   category: "technology",
+  themeColor: "#1A1A1A",
 };
 
 export default function RootLayout({

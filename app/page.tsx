@@ -4,6 +4,7 @@ import {
   bio,
   skillCategories,
   projects,
+  experiences,
   contact,
   siteUrl,
 } from "@/lib/content";
@@ -36,7 +37,7 @@ function getJsonLd() {
         "@type": "Person",
         "@id": `${siteUrl}/#person`,
         name,
-        jobTitle: role.split("|").map((s) => s.trim())[0],
+        jobTitle: "Software Developer",
         description: bio,
         email: contact.email,
         address: { "@type": "PostalAddress", addressLocality: contact.location },
@@ -53,7 +54,7 @@ function getJsonLd() {
         "@type": "WebSite",
         "@id": `${siteUrl}/#website`,
         url: siteUrl,
-        name: `${name} - Portfolio`,
+        name: `${name} - Software Developer`,
         description: bio,
         author: { "@id": `${siteUrl}/#person` },
       },
@@ -82,7 +83,7 @@ export default function Home() {
         </span>
       </header>
 
-      {/* About & Skills */}
+      {/* About */}
       <section className={`${container} ${borderLight} py-8 sm:py-10 lg:py-12`}>
         <h2 className={`font-serif text-lg font-semibold sm:text-xl ${text}`}>
           About
@@ -90,26 +91,62 @@ export default function Home() {
         <p className={`mt-2 font-serif text-sm leading-relaxed sm:mt-3 sm:text-base ${text}`}>
           {bio}
         </p>
-        <h3 className={`mt-8 font-serif text-base font-semibold sm:mt-10 sm:text-lg ${text}`}>
-          Skills
-        </h3>
-        <div className="mt-4 space-y-6 sm:mt-6 sm:space-y-8">
-          {skillCategories.map((cat) => (
-            <div key={cat.title}>
-              <h4 className={`font-mono text-xs font-medium uppercase tracking-wider sm:text-sm ${textMuted} mb-1.5 sm:mb-2`}>
-                {cat.title}
-              </h4>
-              <ul className="flex flex-wrap gap-1.5 sm:gap-2">
-                {cat.items.map((skill) => (
-                  <li
-                    key={skill}
-                    className={`font-mono text-xs sm:text-sm ${border} px-2.5 py-2 sm:px-3 sm:py-1.5 ${text}`}
-                  >
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </div>
+      </section>
+
+      {/* Experience – code.claude.com style: clean cards, type badge, dates, bullets */}
+      <section className={`${container} ${borderLight} py-8 sm:py-10 lg:py-12`}>
+        <h2 className={`font-serif text-lg font-semibold sm:text-xl ${text}`}>
+          Experience
+        </h2>
+        <div className="mt-6 space-y-8 sm:mt-8 sm:space-y-10">
+          {experiences.map((exp) => (
+            <article
+              key={`${exp.company}-${exp.title}`}
+              className={`${border} p-4 transition-colors hover:bg-[#1A1A1A]/5 dark:hover:bg-smoke/5 sm:p-5`}
+            >
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <div>
+                  <h3 className={`font-serif text-base font-semibold sm:text-lg ${text}`}>
+                    {exp.title}
+                  </h3>
+                  <p className={`mt-0.5 font-mono text-xs sm:text-sm ${textMuted}`}>
+                    {exp.company}
+                    <span className="ml-1.5 opacity-80">· {exp.type}</span>
+                  </p>
+                </div>
+                <span className={`font-mono text-[11px] sm:text-xs ${textMuted}`}>
+                  {exp.startDate} – {exp.endDate} · {exp.duration}
+                </span>
+              </div>
+              <p className={`mt-1.5 font-mono text-[11px] sm:text-xs ${textMuted}`}>
+                {exp.location} · {exp.workMode}
+              </p>
+              {exp.skills.length > 0 && (
+                <ul className="mt-3 flex flex-wrap gap-1.5 sm:mt-4 sm:gap-2">
+                  {exp.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className={`font-mono text-[11px] sm:text-xs ${border} px-2 py-1 ${textMuted}`}
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {exp.bullets.length > 0 && (
+                <ul className="mt-3 space-y-1.5 sm:mt-4 sm:space-y-2">
+                  {exp.bullets.map((bullet, i) => (
+                    <li
+                      key={i}
+                      className={`flex gap-2 font-serif text-xs leading-relaxed sm:text-sm ${text}`}
+                    >
+                      <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-current opacity-70" />
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </article>
           ))}
         </div>
       </section>
@@ -157,6 +194,32 @@ export default function Home() {
                 </a>
               </div>
             </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Skills – below Projects */}
+      <section className={`${container} ${borderLight} py-8 sm:py-10 lg:py-12`}>
+        <h2 className={`font-serif text-lg font-semibold sm:text-xl ${text}`}>
+          Skills
+        </h2>
+        <div className="mt-4 space-y-6 sm:mt-6 sm:space-y-8">
+          {skillCategories.map((cat) => (
+            <div key={cat.title}>
+              <h3 className={`font-mono text-xs font-medium uppercase tracking-wider sm:text-sm ${textMuted} mb-1.5 sm:mb-2`}>
+                {cat.title}
+              </h3>
+              <ul className="flex flex-wrap gap-1.5 sm:gap-2">
+                {cat.items.map((skill) => (
+                  <li
+                    key={skill}
+                    className={`font-mono text-xs sm:text-sm ${border} px-2.5 py-2 sm:px-3 sm:py-1.5 ${text}`}
+                  >
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
       </section>

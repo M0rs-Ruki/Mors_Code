@@ -3,9 +3,9 @@ export const siteUrl = "https://www.morscode.site";
 
 export const name = "Anup Pradhan";
 export const role =
-  "Full-Stack Developer | Backend Specialist | AI/ML Enthusiast";
+  "Software Developer | Backend & Systems | AI/ML Enthusiast";
 
-export const bio = `Full-Stack Developer with a strong focus on backend engineering and AI/ML. BCA at Amity University (CGPA 8.96/10). I build scalable systems and clean, efficient code—from REST APIs and MERN stack apps to neural networks from scratch. Based in Bhubaneswar, Odisha.`;
+export const bio = `Software developer with a strong focus on backend engineering and AI/ML. BCA at Amity University (CGPA 8.96/10). I build scalable systems and clean, efficient code—from REST APIs and web applications to neural networks from scratch. Based in Bhubaneswar, Odisha.`;
 
 export const skillCategories: { title: string; items: string[] }[] = [
   {
@@ -86,29 +86,74 @@ export const projects = [
     live: "https://digit-recognizer-fullstack.vercel.app/",
     repo: "https://github.com/M0rs-Ruki/digit-recognition-neural-network",
   },
+];
+
+export const experiences: {
+  company: string;
+  title: string;
+  type: string;
+  startDate: string;
+  endDate: string;
+  duration: string;
+  location: string;
+  workMode: string;
+  skills: string[];
+  bullets: string[];
+}[] = [
   {
-    title: "Terminal Portfolio",
-    description:
-      "Command-line style portfolio with Next.js: terminal navigation, Gemini AI chat, responsive, SEO-optimized.",
-    tech: "Next.js 16, React 19, TypeScript, Tailwind, Google Gemini",
-    live: "https://www.morscode.site",
-    repo: "https://github.com/M0rs-Ruki/terminal",
+    company: "PipesHub",
+    title: "Software Developer",
+    type: "Contract",
+    startDate: "Dec 2024",
+    endDate: "Present",
+    duration: "2 mos",
+    location: "Bhubaneswar, Odisha, India",
+    workMode: "Remote",
+    skills: [],
+    bullets: [],
   },
   {
-    title: "Network Marketing Platform",
-    description:
-      "Full-stack MLM system: affiliate links, team tracking, transaction history.",
-    tech: "MongoDB, Express, Node, HTML, CSS, JavaScript, Tailwind",
-    live: null,
-    repo: "https://github.com/M0rs-Ruki/Network-Marketing",
+    company: "CHATI",
+    title: "Software Developer",
+    type: "Internship",
+    startDate: "Oct 2025",
+    endDate: "Present",
+    duration: "5 mos",
+    location: "Bhubaneswar, Odisha, India",
+    workMode: "On-site",
+    skills: [
+      "Next.js",
+      "Back-End Web Development",
+      "React",
+      "Node.js",
+      "TypeScript",
+      "REST APIs",
+    ],
+    bullets: [],
   },
   {
-    title: "YouTube Backend Clone",
-    description:
-      "Backend simulating YouTube: video upload, metadata, JWT auth, REST APIs for likes/comments/views/subscriptions.",
-    tech: "Node, Express, MongoDB, JWT, Postman",
-    live: null,
-    repo: "https://github.com/M0rs-Ruki/YouTube-Clone-Backend",
+    company: "Prominds Digital",
+    title: "Software Developer",
+    type: "Part-time",
+    startDate: "Jul 2024",
+    endDate: "Present",
+    duration: "1 yr 8 mos",
+    location: "Bhubaneswar, Odisha, India",
+    workMode: "On-site",
+    skills: [
+      "MongoDB",
+      "Express",
+      "React",
+      "Node.js",
+      "Razorpay",
+      "Gemini API",
+    ],
+    bullets: [
+      "Delivered 6 end-to-end client websites and a productized WhatsApp campaign application using MongoDB, Express, React, and Node.js to ship custom, responsive, high-performance experiences.",
+      "Drove a significant improvement in user experience by increasing mobile performance scores from an average of 42 to 96 and boosting overall site responsiveness scores from 62 to 89.",
+      "Integrated third-party services and APIs, including payment gateways (Razorpay) and Gemini API to extend application functionality.",
+      "Ensured on-time delivery for all projects, leading to high client satisfaction and securing repeat business opportunities.",
+    ],
   },
 ];
 
