@@ -109,8 +109,10 @@ export const experiences: {
     duration: "2 mos",
     location: "Bhubaneswar, Odisha, India",
     workMode: "Remote",
-    skills: [],
-    bullets: [],
+    skills: ["OAuth 2.0", "Authentication"],
+    bullets: [
+      "Implemented OAuth 2.0 to manage connections between users and their organizations, with admin-driven permission requests and user approval flows.",
+    ],
   },
   {
     company: "CHATI",
@@ -129,7 +131,10 @@ export const experiences: {
       "TypeScript",
       "REST APIs",
     ],
-    bullets: [],
+    bullets: [
+      "Designed and delivered a full-stack CMS end-to-end—from requirements and architecture through implementation and deployment.",
+      "Built an automated meeting bot that joins Google Meet, Microsoft Teams, and Zoom sessions; records video and generates transcripts with no human interaction required.",
+    ],
   },
   {
     company: "Prominds Digital",
